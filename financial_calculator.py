@@ -3,6 +3,7 @@ import re
 
 
 def is_numeric(value):
+    """Function to validate if input is only digits"""
     try:
         float(value)
         return True
@@ -59,7 +60,7 @@ def main():
 
             while True:
                 years = input("Enter the number of years you plan on investing for: ").replace(" ", "")
-                if not is_numeric(years) or int(years) <= 0 or int(years) >= 10:
+                if not is_numeric(years) or int(years) <= 0:
                     print(
                         "Invalid,Please enter a valid value or come to renew your investment after 10yrs.")
                 else:
