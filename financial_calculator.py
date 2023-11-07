@@ -1,6 +1,7 @@
 import math
 import re
 
+
 def is_numeric(value):
     try:
         float(value)
@@ -8,12 +9,15 @@ def is_numeric(value):
     except ValueError:
         return False
 
+
 def is_valid_money(value):
     # Regular expression to match money values (positive or negative)
     money_pattern = r'^-?\d+(\.\d{1,2})?$'
     return re.match(money_pattern, value) is not None
 
+
 def calculate_investment(amount, interest_rate, years, interest_type):
+    """Function calculates an investment based on users input"""
     r = interest_rate / 100
     if interest_type == "simple":
         future_value = amount * (1 + r * years)
@@ -21,10 +25,12 @@ def calculate_investment(amount, interest_rate, years, interest_type):
         future_value = amount * math.pow((1 + r), years)
     return future_value
 
+
 def calculate_bond_repayment(present_value, annual_interest_rate, months):
     monthly_interest_rate = (annual_interest_rate / 100) / 12
     repayment = (monthly_interest_rate * present_value) / (1 - math.pow(1 + monthly_interest_rate, -months))
     return repayment
+
 
 def main():
     while True:
@@ -44,14 +50,12 @@ def main():
                 else:
                     break
 
-
             while True:
                 interest_rate = input("Enter the interest rate (as a percentage): ")
                 if not is_numeric(interest_rate) or float(interest_rate) <= 0 or float(interest_rate) >= 100:
                     print("Invalid input for interest rate. Please enter a valid percentage value.")
                 else:
                     break
-
 
             while True:
                 years = input("Enter the number of years you plan on investing for: ").replace(" ", "")
@@ -112,7 +116,6 @@ def main():
         else:
             print("Invalid choice. Please select 'investment', 'bond', or 'quit'.")
 
+
 if __name__ == "__main__":
     main()
-
-
